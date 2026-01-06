@@ -1,1 +1,935 @@
 # ReactJS
+
+---
+- **Name : Akash Negi**
+- **Course : MCA (Master of Computer Applications)**
+- **College : Graphic Era Hill University , Dehradun**
+- **Session : 2022 - 2024**
+---
+
+### What is React
+React (aka React.js or ReactJS) is an open-source front-end JavaScript library that is used for building composable user interfaces, especially for single-page applications. It is used for handling view layer for web and mobile apps based on components in a declarative approach.
+
+React was created by Jordan Walke, a software engineer working for Facebook. React was first deployed on Facebook's News Feed in 2011 and on Instagram in 2012.
+
+### What are the major Features of React
+- It uses **JSX** syntax, a syntax extension of JS that allows developers to write HTML in their JS code.
+- It uses **Virtual DOM** instead of Real DOM considering that Real DOM manipulations are expensive.
+- It supports **server-side rendering** which is useful for Search Engine Optimizations(SEO).
+- It follows **Unidirectional or one-way** data flow or data binding.
+- It uses **reusable/composable** UI components to develop the view.
+
+### What are the Advantages of React
+- Increases the application's performance with Virtual DOM.
+- JSX makes code easy to read and write.
+- It renders both on client and server side (SSR).
+- Easy to integrate with frameworks (Angular, Backbone) since it is only a view library.
+- Easy to write unit and integration tests with tools such as Jest.
+
+### What are the Limitations of React
+- React is just a view library, not a full framework.
+- There is a learning curve for beginners who are new to web development.
+- Integrating React into a traditional MVC framework requires some additional configuration.
+- The code complexity increases with inline templating and JSX.
+- Too many smaller components leading to over engineering or boilerplate.
+
+### What is JSX
+_JSX_ stands for _JavaScript XML_ and it is an XML-like syntax extension to ECMAScript. JSX allows us to write HTML-like code directly inside JavaScript, enabling us to create UI components more efficiently.
+
+### What is Virtual DOM
+The Virtual DOM (VDOM) is a lightweight, in-memory representation of the real DOM (Document Object Model). It helps React manage UI updates more efficiently by keeping a virtual version of the UI in memory. When changes occur, React updates only the necessary parts of the real DOM, instead of re-rendering everything.
+
+### How Virtual DOM works
+- Rendering the Virtual DOM: React creates a virtual representation of the UI as a tree of JavaScript objects.
+- Updating State: It generates a new Virtual DOM tree to reflect the updated state when the application state changes.
+- Diffing Algorithm: React compares the new Virtual DOM tree with the previous one using its efficient diffing algorithm to identify the minimal set of changes required.
+- Updating the Real DOM: React applies only the necessary changes to the real DOM, optimizing rendering performance.
+
+### What is Reconciliation
+Reconciliation is the process through which React updates the Browser DOM and makes React work faster. React use a diffing algorithm so that component updates are predictable and faster. React would first calculate the difference between the real DOM and the copy of DOM (Virtual DOM) when there's an update of components. React stores a copy of Browser DOM which is called Virtual DOM. When we make changes or add data, React creates a new Virtual DOM and compares it with the previous one. This comparison is done by Diffing Algorithm. Now React compares the Virtual DOM with Real DOM. It finds out the changed nodes and updates only the changed nodes in Real DOM leaving the rest nodes as it is. This process is called Reconciliation.
+
+### What is the difference between Virtual DOM and Real DOM
+| Virtual DOM | Real DOM |
+| ----------- | -------- |
+| It is a lightweight copy of the original DOM | It is a tree representation of HTML elements |
+| It is maintained by JavaScript libraries | It is maintained by the browser after parsing HTML elements |
+| After manipulation it only re-renders changed elements | After manipulation, it re-render the entire DOM |
+| Updates are lightweight | Updates are heavyweight |
+| Performance is fast and UX is optimised	 | Performance is slow and the UX quality is low |
+| Highly efficient as it performs batch updates | Less efficient due to re-rendering of DOM after each update |
+
+### What are Fragments
+ReactJS Fragments are a way to group multiple elements without adding an extra node to the DOM. It allows you to return multiple child elements from a component without wrapping them in a parent container like a <div>.
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function App() {
+  return (
+    <>
+      <h1>Hello, Akash!</h1>
+    </>
+  )
+}
+
+export default App
+```
+
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function App() {
+  return (
+    <React.Fragment>
+      <h1>Hello, Akash!</h1>
+    </React.Fragment>
+  )
+}
+
+export default App
+```
+
+### What are Components in React
+Components are the JavaScript functions or reusable piece of code which helps in creating User Interface (UI) in React.
+- **Functional Component** - These are the pure JavaScript functions that accept prop object as one and only one parameter and return React element to render output.
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function App() {
+  return (
+    <>
+      <h1>Hello, Akash!</h1>
+    </>
+  )
+}
+
+export default App
+```
+
+- **Class Component** - These components defiened using class keyword and include extends React.Component and render function.
+```jsx
+class App extends React.Component {
+  render(){
+    return(
+      <>
+        <h1>Akash Negi</h1>
+      </>
+    )
+  }
+}
+
+export default App
+```
+
+### What is the difference between Functional Component and Class Component
+| Functional Component | Class Component |
+| ---------------------| --------------- |
+| It can use Hooks like useState, useReducer | It uses this.state and this.setState() |
+| It uses useEffect Hook for lifecycle methods | It uses traditional lifecycle methods like componentDidMount, componentWillUnmount |
+| Returns JSX directly inside the function | Uses a render() method to return JSX |
+| Faster and more lightweight due to simpler structure | Slightly heavier due to the overhead of class instances |
+| Can use React hooks (useState, useEffect, etc.) | Cannot use hooks; relies on lifecycle methods and state |
+| Does not use this keyword | Uses this to access props and state |
+|Less boilerplate code, easier to write and understand | More boilerplate code, especially for state and methods |
+| Simple and direct event handling | Requires method binding for event handling |
+
+### What is the difference between StateFull Component and StateLess Component
+| StateFull Component | StateLess Component |
+| --------------------| ------------------- |
+
+### What is the difference between Controlled Component and UnCntrolled Component
+| Controlled Component | UnControlled Component |
+| ---------------------| ---------------------- |
+| React state manages the input value | DOM manages the input value |
+| React → DOM (via props/state) | DOM → React (via refs) |
+| Input value bound to state (value prop)	 | Input value uncontrolled by React |
+| onChange updates state on every change	 | Access value on demand via ref |
+| Easy to validate on each keystroke | Validation done on submit or on demand |
+| More code (state + handlers required) | Less code, simpler for quick forms |
+| More re-renders due to state updates | Fewer re-renders, potentially better performance |
+| Complex forms with real-time validation | Simple forms or when instant control isn’t needed |
+| Easy to sync with other UI elements | Difficult to keep in sync without extra work |
+
+### What are Higher-Order Components
+Higher-order components (HOC) are an advanced technique in React that is used for reusing component logic. It is the function that takes the original component and returns the new enhanced component.
+It doesn’t modify the input component directly. Instead, they return a new component with enhanced behavior.
+They allow you to reuse component logic across multiple components without duplicating it.
+They are pure functions that accept a component and return a new component.
+
+A Higher Order Component (HOC) is like a wrapper that adds extra features to your React components. Think of it like putting a case on your phone - the case adds new features (like water protection) without changing the phone itself.
+
+- Adding a Border
+```jsx
+import React from 'react'
+
+// Component without Border
+function Greeting({ name }) {
+  return (
+    <h1>Hello, {name}!</h1>
+  )
+}
+
+// Higher Order Component that adds Border to any Component
+function withBorder(WrappedComponent) {
+  return function NewComponent(props) {
+    return (
+      <div style={{ border: '2px solid blue', padding: '10px' }}>
+        <WrappedComponent {...props} />
+      </div>
+    );
+  };
+}
+
+// Create New Component with Border
+const GreetingWithBorder = withBorder(Greeting);
+
+function App() {
+  return (
+    <>
+      <Greeting name="Akash" />
+      <hr/>
+      <GreetingWithBorder name="Akash" />
+    </>
+  );
+}
+
+export default App
+```
+
+```jsx
+import React, { useState } from 'react'
+import './App.css'
+
+function Counter({ count , increament , decreament , reset }) {
+  return (
+    <>
+      <h1>React Counter Application</h1>
+      <h2>Count : {count}</h2>
+      <button onClick={increament}>Increament</button>
+      <button onClick={reset}>Reset</button>
+      <button onClick={decreament}>Decreament</button>
+    </>
+  )
+}
+
+function withCounter(WrappedComponent) {
+  return function WithCounter(props) {
+    const [count, setCount] = useState(0);
+
+    const increament = () => setCount((prev) => prev + 1);
+    const decreament = () => setCount((prev) => prev - 1);
+    const reset = () => setCount(0);
+    return (
+      <WrappedComponent
+        count={count}
+        increament={increament}
+        decreament={decreament}
+        reset={reset}
+        {...props}
+      />
+    );
+  };
+};
+
+// Create New Component with Border
+const EnhancedCounter = withCounter(Counter);
+
+function App() {
+  return (
+    <>
+      <EnhancedCounter/>
+    </>
+  );
+}
+
+export default App
+```
+
+### What is the difference between State and Props
+
+### Explain Styling in React
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function App() {
+  const internal = {
+    color:"green",
+  }
+
+  return (
+    <>
+      {/*Inline CSS*/}
+      <h1 style={{color:'red'}}>Name : Akash</h1>
+      {/*Internal CSS*/}
+      <h2 style={internal}>Age : 20</h2>
+      {/*External CSS*/}
+      <button className='external'>Click Me</button>
+    </>
+  )
+}
+
+export default App
+```
+
+### Explain Key in React
+A key serves as a unique identifier in React, helping to track which items in a list have changed, been updated, or removed. It is particularly useful when dynamically creating components or when users modify the list.
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function User() {
+  const [students , setStudents] = useState([
+    {name:"Akash" , age:20},
+    {name:"Bharat" , age:21},
+    {name:"Divyanshu" , age:22},
+  ])
+
+  return (
+    <>
+      <h1>Students</h1>
+      <ul>
+        {students.map((students , index) => (
+          <li key={index}>Name:{students.name} & Age:{students.age}</li>
+        ))}
+      </ul>
+      <p>Total Number of Students : {countStudent}</p>
+      <p>Average of Students : {averageStudent}</p>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <User/>
+    </>
+  )
+}
+
+export default App
+```
+
+### What are Props in React
+In React, props (short for "properties") are used to pass information from one component to another. The main purpose of props is to allow a parent component to send data to its child components.
+- Props cannot be modified by the receiving component.
+- They are strictly for reading data and should not be altered.
+- Props can be updated when the parent component’s state changes.
+```jsx
+import { useState } from 'react'
+import './App.css'
+
+function Greet(props) {
+  return (
+    <>
+      <h1>Hello : {props.name}!</h1>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Greet name="Akash"/>
+    </>
+  )
+}
+
+export default App
+```
+
+### What is Prop Drilling in React
+Prop drilling refers to the practice of passing data through several layers of nested components in React, even though intermediate components don't directly utilize this data. This means that a middle component doesn't necessarily need the data, but it must still pass it down to the next component, creating an unnecessary and sometimes lengthy chain of props.
+
+Solutions
+- Using Context API
+- Using Custom Hooks
+- Global State Management (Redux, Zustand, MobX)
+
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function Parent() {
+  return (
+    <>
+      <h1>Parent Component</h1>
+      <Child name="Akash"/>
+    </>
+  )
+}
+
+function Child(props) {
+  return (
+    <>
+      <h1>Child Component</h1>
+      <GrandChild name={props.name}/>
+    </>
+  )
+}
+
+function GrandChild(props) {
+  return (
+    <>
+      <h1>Grand Child Component</h1>
+      <h2>Hello, {props.name}!</h2>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Parent/>
+    </>
+  )
+}
+
+export default App
+```
+
+### What is Context API in React
+The useContext hook in React allows components to consume values from the React context. React’s context API is primarily designed to pass data down the component tree without manually passing props at every level. useContext is a part of React's hooks system, introduced in React 16.8, that enables functional components to access context values.
+It helps avoid the problem of "prop drilling," where props are passed down multiple levels from parent to child components.
+- useContext hook consumes values from a React Context, making them accessible to functional components.
+- First, create a Context object using React.createContext(), which holds the shared state.
+- Use useContext to access the context value in any component that needs it, avoiding prop drilling.
+- When the value of the Context updates, all components consuming that context automatically re-render with the new value.
+
+```jsx
+// Step-1:Create Context
+// Step-2:Wrap All Children Inside Context Provider
+// Step-3:Pass Value
+// Step-4:Consume Context
+export const UserContext = React.createContext();
+
+function UserContextProvider({children}) {
+  const [user , setUser] = useState({name:"Akash"});
+  return (
+    <>
+      <UserContext.Provider value={user}>
+        {children}
+      </UserContext.Provider>
+    </>
+  )
+}
+
+function Parent() {
+  
+  return (
+    <>
+      <UserContextProvider>
+        <Child/>
+      </UserContextProvider>
+    </>
+  )
+}
+
+function Child() {
+  return (
+    <>
+      <GrandChild/>
+    </>
+  )
+}
+
+function GrandChild() {
+  const user = useContext(UserContext);
+  return (
+    <>
+      <h2>Hello, {user.name}!</h2>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Parent/>
+    </>
+  )
+}
+
+export default App
+```
+
+- Theme Changer Using ContextAPI
+```jsx
+export const ThemeContext = React.createContext();
+
+function ContextProvider({children}) {
+  const [user , setUser] = useState({name:"Akash"});
+  const [theme , setTheme] = useState("light");
+  return (
+    <>
+      <ThemeContext.Provider value={{user , setUser , theme , setTheme}}>
+        {children}
+      </ThemeContext.Provider>
+    </>
+  )
+}
+
+function Parent() {
+  const {user , setUser , theme , setTheme} = useContext(ThemeContext);
+
+  const container = {
+    height:"200px",
+    width:"200px",
+    border:"2px solid black",
+    backgroundColor: "lightblue",
+    display:"flex",
+    flexDirection:"column",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
+  const newTheme = {
+    backgroundColor: theme === "light" ? "lightblue" : "black",
+    color: theme === "light" ? "black" : "white"
+  };
+
+  const styling = {...container , ...newTheme};
+
+  return (
+    <>
+      <div style={styling}>
+        <Child/>
+      </div>
+    </>
+  )
+}
+
+function Child() {
+  return (
+    <>
+      <GrandChild/>
+    </>
+  )
+}
+
+function GrandChild() {
+  const {user , setUser , theme , setTheme} = useContext(ThemeContext);
+
+  const toggleTheme = () => {
+    if(theme == "light"){
+      setTheme("dark");
+    }
+    else{
+      setTheme("light");
+    }
+  }
+
+  return (
+    <>
+      <h2>Welcome, {user.name}!</h2>
+      <button onClick={toggleTheme}>Change Theme</button>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <ContextProvider>
+      <Parent />
+    </ContextProvider>
+  );
+}
+
+export default App
+```
+
+### What is State in React
+State of a component is an object that holds some information that may change over the lifetime of the component. Whenever state changes, React re-renders the component to reflect the updated data. This enables you to build dynamic UIs that respond to user interactions.
+
+Syntax : const [state, setState] = useState(initialState);
+- state: The current state value.
+- setState: A function that is used to update the state.
+- initialState: The initial value that the state will hold when the component is first rendered.
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function Counter() {
+  const [count , setCount] = useState(0);
+
+  return (
+    <>
+      <h1>React Counter Application</h1>
+      <h2>Count : {count}</h2>
+      <button onClick={() => setCount(count+1)}>Increament</button>
+      <button onClick={() =>setCount(0)}>Reset</button>
+      <button onClick={() =>setCount(count-1)}>Decreament</button>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Counter/>
+    </>
+  )
+}
+
+export default App
+```
+
+### What is Derived State in React
+Derived state is a piece of state that can be computed or derived from an existing state or props. Instead of explicitly managing and updating the derived state separately, you calculate it dynamically whenever you need it. Derived state minimizes duplication and ensures your app’s state remains consistent.
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function DerivedState() {
+  const [students , setStudents] = useState([
+    {name:"Akash" , age:20},
+    {name:"Bharat" , age:21},
+    {name:"Divyanshu" , age:22},
+  ])
+
+  // Derived State -> countStudent & averageStudent
+  const countStudent = students.length; 
+  const averageStudent = students.reduce((acc, curr) => acc + curr.age, 0)/countStudent;
+
+  return (
+    <>
+      <h1>Students</h1>
+      <ul>
+        {students.map((students , index) => (
+          <li key={index}>Name:{students.name} & Age:{students.age}</li>
+        ))}
+      </ul>
+      <p>Total Number of Students : {countStudent}</p>
+      <p>Average of Students : {averageStudent}</p>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <DerivedState/>
+    </>
+  )
+}
+
+export default App
+```
+
+### What is Lifting State Up in React
+In React, lifting state up refers to the technique of moving a shared state to a common ancestor of the components that need to access or modify it. Instead of maintaining separate state values in each component, the state is kept in the parent component. This parent component then passes the state and any necessary functions as props to its child components.
+By doing this, the child components can access and interact with the shared state, ensuring consistency across the application.
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function LiftingStaeUp() {
+  const [inputValue , setInputValue] = useState("")
+
+  return (
+    <>
+      <h1>Parent Component</h1>
+      <ChildInput inputValue={inputValue} setInputValue={setInputValue}/>
+      <ChildOutput inputValue={inputValue} setInputValue={setInputValue}/>
+    </>
+  )
+}
+
+function ChildInput({inputValue , setInputValue}) {
+  return (
+    <>
+      <h1>Child - Input</h1>
+      <input type='text' placeholder='Enter Name' value={inputValue} onChange={(e) => setInputValue(e.target.value)}></input>
+    </>
+  )
+}
+
+function ChildOutput({inputValue}) {
+  return (
+    <>
+      <h1>Child - Output</h1>
+      <p>Value : {inputValue}</p>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <LiftingStaeUp/>
+    </>
+  )
+}
+
+export default App
+```
+
+### What are Hooks in React
+React Hooks are functions that allow functional components in React to manage state, handle side effects, and access other React features without needing class components.
+- Simplifies Code: Hooks provide a simpler and cleaner way to write components by using functions instead of classes.
+- State and Side Effects: Hooks allow you to use state (useState) and side effects (useEffect) in functional components.
+- Reusability: Hooks make it easier to share logic across components by creating custom hooks.
+- Readability: Functional components with hooks tend to be more concise and easier to read than class components.
+
+### What is useState Hook
+### What is useEffect Hook
+### What is useCallback Hook
+### What is useRef Hook
+### What is useMemo Hook
+### What is Context Hook
+### What is Performance Hook
+### What is Custom Hook
+
+### What is the difference between State and Props
+In React, both state and props are plain JavaScript objects and used to manage the data of a component, but they are used in different ways and have different characteristics.
+
+The state entity is managed by the component itself and can be updated using the setter(setState() for class components) function. Unlike props, state can be modified by the component and is used to manage the internal state of the component. i.e, state acts as a component's memory. Moreover, changes in the state trigger a re-render of the component and its children. The components cannot become reusable with the usage of state alone.
+
+On the otherhand, props (short for "properties") are passed to a component by its parent component and are read-only, meaning that they cannot be modified by the own component itself. i.e, props acts as arguments for a function. Also, props can be used to configure the behavior of a component and to pass data between components. The components become reusable with the usage of props.
+
+### What are Keys in React
+Key is a special string attribute we need to include whe creating the lists of elements in React. Keys are used to give an identity to the element in the list. It is used to identify which item in the list is changed, updated, removed.
+
+
+
+### What is the difference between Shadow DOM and Virtual DOM
+The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. 
+The Virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
+
+
+
+### Why Fragments are better than container divs
+- Fragments are a bit faster and use less memory by not creating an extra DOM node. This only has a real benefit on very large and deep trees.
+- Some CSS mechanisms like Flexbox and CSS Grid have a special parent-child relationships, and adding divs in the middle makes it hard to keep the desired layout.
+- The DOM Inspector is less cluttered.
+
+### What are Stateful Components
+If the behaviour of a component is dependent on the state of the component then it can be termed as Stateful Component. These stateful components are either function components with hooks or class components.
+
+### What are Stateless Components
+If the behaviour of a component is independent of its state then it can be termed as stateless component. You can use either a function or a class for creating stateless components. But unless you need to use a lifecycle hook in your components, you should go for function components. There are a lot of benefits if you decide to use function components here; they are easy to write, understand, and test, a little faster, and you can avoid the this keyword altogether.
+
+### What are Controlled Components
+Controlled Components are the Form elements like input, select, textarea that are managed by React state. The value of Form element is set and update through React state.
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function Form1() {
+  const [name , setName] = useState("")
+  const [email , setEmail] = useState("")
+  const [phone , setPhone] = useState("")
+  
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    console.log("Form-1 Using useState()");
+    console.log(`Name : ${name} & Email : ${email} & Phone : ${phone}`);
+  }
+
+  return(
+    <>
+      <form onSubmit={handleSubmitForm}>
+        <h2>Form-1 Using useState</h2>
+        <div>
+          <label>Name : </label>
+          <input type="text" placeholder="Enter Name"  name="name" value={name} onChange={(event) => {setName(event.target.value)}}></input>
+        </div>
+        <div>
+          <label>Email : </label>
+          <input type="email" placeholder="Enter Email" name="email" value={email} onChange={(event) => {setEmail(event.target.value)}}></input>
+        </div>
+        <div>
+          <label>Phone Number : </label>
+          <input type="tel" placeholder="Enter Phone Number" name="phone" value={phone} onChange={(event) => {setPhone(event.target.value)}}></input>
+        </div>
+        <div>
+          <button>Submit</button>
+        </div>
+        <h3>Name : {name} | Email : {email} | Phone : {phone}</h3>
+      </form>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Form1/>
+    </>
+  )
+}
+
+export default App
+```
+
+```jsx
+import React from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function Form2() {
+  const [user , setUser] = useState({
+    name : "",
+    email : "",
+    phone : ""
+  }) 
+
+  const handleInputChange = (event) => {
+    const {name , value} = event.target;
+    setUser((prev) => ({...prev , [name] : value}))
+  }
+
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    console.log("Form-2 Using Object")
+    console.log(user);
+  }
+
+  return(
+    <>
+      <form onSubmit={handleSubmitForm}>
+        <h2>Form-2 Using Object</h2>
+        <div>
+          <label>Name : </label>
+          <input type="text" placeholder="Enter Name"  name="name" value={user.name} onChange={handleInputChange}></input>
+        </div>
+        <div>
+          <label>Email : </label>
+          <input type="email" placeholder="Enter Email" name="email" value={user.email} onChange={handleInputChange}></input>
+        </div>
+        <div>
+          <label>Phone Number : </label>
+          <input type="tel" placeholder="Enter Phone Number" name="phone" value={user.phone} onChange={handleInputChange}></input>
+        </div>
+        <div>
+          <button>Submit</button>
+        </div>
+          <h3>Name : {user.name} | Email : {user.email} | Phone : {user.phone}</h3>
+      </form>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Form2/>
+    </>
+  )
+}
+
+export default App
+```
+
+### What are Un-Controlled Components
+Un-Controlled Components are the components that manage their own state internally rather than relying on React state. This approach is useful for simple forms where there is no need to manipulate input data through React state updates.
+```jsx
+import React, { useRef } from 'react'
+import { useState } from 'react'
+import './App.css'
+
+function Form3() {
+  const name = useRef(null)
+  const email = useRef(null)
+  const phone = useRef(null)
+  
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    console.log("Form-3 Using useRef()");
+    console.log(`Name : ${name.current.value} & Email : ${email.current.value} & Phone : ${phone.current.value}`);
+  }
+
+  return(
+    <>
+      <form onSubmit={handleSubmitForm}>
+        <h2>Form-3 Using useRef</h2>
+        <div>
+          <label>Name : </label>
+          <input type="text" placeholder="Enter Name"  name="name" ref={name}></input>
+        </div>
+        <div>
+          <label>Email : </label>
+          <input type="email" placeholder="Enter Email" name="email" ref={email}></input>
+        </div>
+        <div>
+          <label>Phone Number : </label>
+          <input type="tel" placeholder="Enter Phone Number" name="phone" ref={phone}></input>
+        </div>
+        <div>
+          <button>Submit</button>
+        </div>
+      </form>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Form3/>
+    </>
+  )
+}
+
+export default App
+```
+
+### What are Pure Components
+Pure components are the components which render the same output for the same state and props. In function components, you can achieve these pure components through memoized React.memo() API wrapping around the component. This API prevents unnecessary re-renders by comparing the previous props and new props using shallow comparison. So it will be helpful for performance optimizations.
+
+But at the same time, it won't compare the previous state with the current state because function component itself prevents the unnecessary rendering by default when you set the same state again.
+
+### What is Lifting State Up in React
+When several components need to share the same changing data then it is recommended to lift the shared state up to their closest common ancestor. That means if two child components share the same data from its parent, then move the state to parent instead of maintaining local state in both of the child components.
+
+### What are Higher-Order Components
+A higher-order component (HOC) is a function that takes a component and returns a new component. Basically, it's a pattern that is derived from React's compositional nature.
+
+We call them Pure Components because they can accept any dynamically provided child component but they won't modify or copy any behavior from their input components.
+
+Higher-Order Components can be used for many use cases -
+- Code reuse, logic and bootstrap abstraction.
+- Render hijacking.
+- State abstraction and manipulation.
+- Props manipulation.
+
+### What is Children Prop
+Children is a prop that allows to pass components as data to other components, just like any other prop. Component tree put between component's opening and closing tag will be passed to that component as children prop.
+
+### What is React Fiber
+Fiber is the new reconciliation engine or reimplementation of core algorithm in React v16. The goal of React Fiber is to increase its suitability for areas like animation, layout, gestures, ability to pause, abort, or reuse work and assign priority to different types of updates; and new concurrency primitives.
+
+### What is the main goal of React Fiber?
+The goal of React Fiber is to increase its suitability for areas like animation, layout, and gestures. Its headline feature is incremental rendering (the ability to split rendering work into chunks and spread it out over multiple frames).
+
+Its main goals are - 
+- Ability to split interruptible work in chunks.
+- Ability to prioritize, rebase and reuse work in progress.
+- Ability to yield back and forth between parents and children to support layout in React.
+- Ability to return multiple elements from render().
+- Better support for error boundaries.
+
+
+
+
+
+
+
+
+
+
+
+
+---
